@@ -4,7 +4,7 @@ Carte de labyrinthe de haies du jeu **HDF LABYRINTH** (F.S.M Game House), constr
 
 - **Jeu à la première personne uniquement** : vue à hauteur des yeux (1,65 m), sans vue à la troisième personne ni zoom, le corps du joueur n'est pas affiché.
 - Labyrinthe carré en haies, allées en terre, enceinte et route, clairière centrale, ruines et arches.
-- Objectif : atteindre la clairière centrale. Minimap (la flèche suit le regard), carte complète, chrono.
+- Objectif : atteindre la clairière centrale. Carte complète (touche M, R1 ou Share sur la manette, bouton Carte en tactile), chrono, sans minimap.
 - Version : HDF LABYRINTH v1.1
 
 ## Commandes

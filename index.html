@@ -782,7 +782,7 @@ body.fps-verrou,body.fps-verrou canvas{cursor:none}
 #lbHud .lb-obj b{font:700 11px/1 var(--f-d);letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 #lbHud .lb-obj span{font:600 16px/1.2 var(--f-d);letter-spacing:.03em;color:var(--ink)}
 #lbHud .lb-chr{justify-self:start;padding:5px 10px;border-radius:999px;background:var(--glass);border:1px solid var(--line);font:600 14px/1 var(--f-d);letter-spacing:.08em;color:#cfe3b0}
-#lbMini{position:absolute;right:calc(var(--sr,0px) + 14px);top:calc(var(--st,0px) + 12px);width:168px;height:168px;border-radius:50%;box-shadow:0 0 0 2px rgba(230,220,190,.55),0 6px 18px rgba(0,0,0,.45);pointer-events:none}
+#lbMini{display:none!important;position:absolute;right:calc(var(--sr,0px) + 14px);top:calc(var(--st,0px) + 12px);width:168px;height:168px;border-radius:50%;box-shadow:0 0 0 2px rgba(230,220,190,.55),0 6px 18px rgba(0,0,0,.45);pointer-events:none}
 #lbNotifs{position:absolute;left:50%;top:calc(var(--st,0px) + 16px);transform:translateX(-50%);display:grid;gap:6px;justify-items:center;width:min(460px,60vw);pointer-events:none}
 .lb-n{padding:9px 15px;border-radius:9px;background:var(--glass2);border:1px solid var(--line);font:600 15px/1.25 var(--f-d);letter-spacing:.03em;text-align:center;transition:opacity .6s,transform .6s}
 .lb-n.ok{border-color:rgba(140,210,100,.7);color:#d9f5c2}.lb-n.av{border-color:rgba(255,179,64,.7);color:#ffe1b0}.lb-n.out{opacity:0;transform:translateY(-6px)}
@@ -7589,7 +7589,7 @@ const JEU = (() => {
     ui.carte.onclick = () => ouvrirCarte(false);
     ui.fin.querySelector('[data-f=rejouer]').onclick = () => { ui.fin.hidden = true; SAUVE.reinit(); demarrer(null); };
     ui.fin.querySelector('[data-f=titre]').onclick = () => { ui.fin.hidden = true; SAUVE.reinit(); arreter(); if (typeof MENUS !== 'undefined') MENUS.ouvrirTitre(); };
-    ui.mini.onclick = () => ouvrirCarte(true);
+    
   }
   function initEntrees() {
     addEventListener('keydown', e => { if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return; const k = e.key.toLowerCase(); if (!kb[k]) kbEdge[k] = true; kb[k] = true; if (actif && [' ', 'tab', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(k)) e.preventDefault(); });
@@ -7641,7 +7641,7 @@ const JEU = (() => {
     if (!p) p = creerJoueur();
     if (s) { placer(s.x, s.z, s.yaw ?? Math.PI); p.camYaw = s.camYaw ?? p.camYaw; p.camPitch = clamp(s.pitch || 0, -TANGAGE, TANGAGE); chrono = s.chrono || 0; etape = s.etape ? 1 : 0; entreePar = s.entreePar || null; prevDans = LABY.dansMaze(s.x, s.z); }
     else { placer(LABY.SPAWN.x, LABY.SPAWN.z, Math.PI); chrono = 0; etape = 0; entreePar = null; prevDans = false; }
-    fini = false; actif = true; enPause = false; carteOn = false; ui.carte.hidden = true; ui.fin.hidden = true; ui.root.hidden = false; ui.hud.hidden = false; ui.mini.hidden = false;
+    fini = false; actif = true; enPause = false; carteOn = false; ui.carte.hidden = true; ui.fin.hidden = true; ui.root.hidden = false; ui.hud.hidden = false; ui.mini.hidden = true;
     document.body.classList.add('jeu'); padGrace = performance.now() + 500; for (const k in kbEdge) kbEdge[k] = false;
     const tactile = matchMedia('(pointer:coarse)').matches || 'ontouchstart' in self; ui.touch.hidden = !tactile; touch.on = tactile;
     majHud(); autoT = 0; camera({ mx: 0, my: 0, cxs: 0, cys: 0, lx: 0, ly: 0 }, 0);
@@ -7714,7 +7714,7 @@ const JEU = (() => {
     A.views = [{ eye: p.eye.slice(), look: p.look.slice(), x: 0, y: 0, w: 1, h: 1, fov: FOV, near: NEAR, main: true }];
     if (ui.vise) ui.vise.hidden = gel;
     if (!gel) objectif();
-    majHud(); if ((A.frames || 0) % 3 === 0) minimap(); if (carteOn && (A.frames || 0) % 10 === 0) dessinerCarte();
+    majHud(); if (carteOn && (A.frames || 0) % 10 === 0) dessinerCarte();
     autoT += dt; if (autoT > 30 && !gel) { autoT = 0; SAUVE.sauver('silence'); }
   }
   return { init, demarrer, arreter, update, etat, ouvrirCarte, setPause, toast, notif, entrees, get actif() { return actif; }, get joueur() { return p; }, get pause() { return enPause; }, get etape() { return etape; }, get fini() { return fini; }, get chrono() { return chrono; },
