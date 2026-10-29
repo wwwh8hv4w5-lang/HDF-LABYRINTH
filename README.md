@@ -1,6 +1,13 @@
-# HDF LABYRINTH 1.0
+# HDF LABYRINTH 1.0.1
 
 Jeu de labyrinthes de haies à la première personne de **F.S.M Game House**, construit sur le moteur 3D FSM3D de HDF WALL. Tout tient dans un seul fichier HTML autonome : `index.html`.
+
+**Version 1.0.1** : corrections d'affichage de l'interface, sans changement du jeu, des commandes ni du moteur.
+
+- Sur les petits écrans (800 × 500, iPhone en paysage, iPad), l'écran titre tient en entier : toutes les entrées du menu, dont « Aide », restent accessibles, et le pied de page ne recouvre plus le menu.
+- Les notifications et les aides d'action ne recouvrent plus le cadre d'objectif.
+- Le briefing, la pause, la fin de niveau et les pages longues (options, aide, carnet) défilent, y compris à la manette, et leurs boutons restent visibles.
+- Les zones sûres de l'iPhone et de l'iPad sont respectées, et les libellés des boutons tactiles sont centrés.
 
 **Version 1.0** : c'est la première version complète. Elle propose deux campagnes, **Exploration** et **Horreur**. Chaque labyrinthe est généré aléatoirement, comporte des objectifs à remplir et raconte un épisode d'une histoire suivie.
 
