@@ -1,6 +1,13 @@
-# HDF LABYRINTH 1.1
+# HDF LABYRINTH 1.1.1
 
 Jeu de labyrinthes de haies à la première personne de **F.S.M Game House**, construit sur le moteur 3D FSM3D de HDF WALL. Tout tient dans un seul fichier HTML autonome : `index.html`.
+
+**Version 1.1.1** : correctif de la **roue des accessoires** du mode Horreur, qui ne permettait pas de choisir un accessoire.
+
+- La roue est maintenant cliquable et tactile (elle était recouverte par une couche d'interface qui ignorait les touchers et les clics). Sur tablette, le toucher sur « Accessoire » ouvre la roue, puis un toucher sur Lampe, Lunettes NV ou Rien équipe l'accessoire.
+- Manette : maintenir L1 et pousser le stick droit, ou utiliser ◀ ▶, puis relâcher L1. Un **appui bref** sur L1 passe à l'accessoire suivant.
+- Clavier : maintenir X, puis touches 1 (lampe), 2 (lunettes), 3 (rien), ou un appui bref sur X pour passer au suivant.
+- Souris : le survol sélectionne, le clic valide. Les lunettes non trouvées ne peuvent plus être visées par erreur.
 
 **Version 1.1** : un **coéquipier** vous accompagne dans les deux modes (voir la section « Coéquipier »). Il fonctionne entièrement en local, sans réseau ; une couche IA facultative (OpenRouter, Claude Haiku 5.5 par défaut) peut le piloter si une clé est fournie. Les sauvegardes 1.0.x restent compatibles et la génération des labyrinthes est inchangée.
 
