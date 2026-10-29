@@ -1,6 +1,8 @@
-# HDF LABYRINTH 1.0.2
+# HDF LABYRINTH 1.1
 
 Jeu de labyrinthes de haies à la première personne de **F.S.M Game House**, construit sur le moteur 3D FSM3D de HDF WALL. Tout tient dans un seul fichier HTML autonome : `index.html`.
+
+**Version 1.1** : un **coéquipier** vous accompagne dans les deux modes (voir la section « Coéquipier »). Il fonctionne entièrement en local, sans réseau ; une couche IA facultative (OpenRouter, Claude Haiku 5.5 par défaut) peut le piloter si une clé est fournie. Les sauvegardes 1.0.x restent compatibles et la génération des labyrinthes est inchangée.
 
 **Version 1.0.2** : son et confort audio, sans changement du jeu, des commandes ni du moteur.
 
@@ -95,6 +97,28 @@ Au fil des niveaux, la lampe dure moins longtemps, les piles se font plus rares 
 
 Les deux campagnes suivent le fil de *L'Atlas des haies*, l'œuvre inachevée d'une cartographe fictive. Le récit avance en arcs de 5 à 7 labyrinthes, chacun avec ses chapitres, ses temps forts et un épilogue. Douze prémisses sont prévues, six de jour et six de nuit. Les textes sont choisis de façon déterministe à partir de la graine, et les morceaux d'histoire ne se répètent pas avant de nombreux niveaux. Chaque briefing s'ouvre aussi sur une ligne d'ambiance (météo, lumière, bruits), tirée de la graine parmi douze par mode : deux campagnes ne commencent donc pas tout à fait de la même façon.
 
+## Coéquipier
+
+Un compagnon, dont le prénom et le caractère sont tirés de la graine, marche avec vous. Le jeu reste à la première personne : on le croise du regard, il ne gêne jamais.
+
+- **Il suit** le joueur par le chemin le plus court (BFS sur le labyrinthe) et respecte les murs. Il n'a pas de collision : il ne bloque ni le joueur ni les portes. S'il se retrouve trop loin ou coincé, il réapparaît discrètement derrière vous, hors du champ de vision.
+- **Il aide** : il signale ou ramasse les objets proches (ils vont toujours dans votre inventaire), et sur appel (**C**, **L2** ou le bouton tactile « Coéquipier ») il donne un indice sur un objectif **déjà découvert**. Il ne révèle jamais la sortie ni un objectif inconnu, et ne garde jamais une clé indispensable.
+- **En Horreur**, il a peur : il se cache et n'attire jamais le gardien.
+- Son état s'affiche dans le HUD et dans les Options : « Coéquipier : local », « IA » ou « hors ligne ».
+
+### Options
+
+Coéquipier (oui/non) · Cerveau (local ou IA) · Appels IA (toutes les 2, 3 ou 5 s, ou jamais) · Modèle IA (Claude Haiku 5.5 par défaut, GPT-6 Luna, Mercury 3) · champ « Clé perso » · Enregistrer la clé · Effacer la clé · Tester la connexion. Tout se règle aussi à la manette PS4.
+
+### Couche IA facultative
+
+- Sans clé, **aucune requête n'est envoyée** : le coéquipier reste local et le jeu marche hors ligne.
+- Avec une clé, le jeu envoie au plus une petite requête à la fois (un état JSON compact, sans la position de la sortie), toutes les ~3 s, avec des plafonds de 30 par minute et 400 par partie, un délai de 4 s et une attente croissante après une erreur. La réponse doit être une action d'une liste fermée (suivre, aller_a, ramasser, ouvrir, activer_levier, attendre, avertir, se_cacher). Toute réponse invalide, interdite ou injoignable est ignorée, et le coéquipier repasse en local.
+- **Où mettre la clé** :
+  - soit dans le jeu, Options → « Clé perso » : elle est rangée dans le stockage local de l'appareil, n'est jamais réaffichée, et le bouton « Effacer la clé » la supprime ;
+  - soit dans le code, constante `COEQ_CLE_API` en tête de la section `/* <<COÉQUIPIER 1.1>> */` de `index.html` (vide par défaut).
+- ⚠️ Une clé écrite dans `index.html` publié sur GitHub Pages est **lisible par n'importe qui**. N'y mettez qu'une clé dédiée, à crédit plafonné, ou préférez le champ des Options.
+
 ## Commandes
 
 | Action | Clavier / souris | Manette PS4 | Tactile |
@@ -110,6 +134,7 @@ Les deux campagnes suivent le fil de *L'Atlas des haies*, l'œuvre inachevée d'
 | Horreur : lampe ou lunettes | F | □ | Bouton Lampe |
 | Horreur : pile | T | △ | Bouton Pile |
 | Horreur : roue d'accessoires | Maintenir X | Maintenir L1 | Bouton Accessoire |
+| Appeler le coéquipier | C | L2 | Bouton Coéquipier |
 
 Les commandes sont les mêmes que dans HDF WALL. Le jeu se joue uniquement à la première personne, sans mini-carte ; la carte complète reste disponible et montre les objectifs déjà aperçus, les portes et la herse.
 
