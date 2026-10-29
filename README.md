@@ -1,6 +1,22 @@
-# HDF LABYRINTH 1.0.1
+# HDF LABYRINTH 1.0.2
 
 Jeu de labyrinthes de haies à la première personne de **F.S.M Game House**, construit sur le moteur 3D FSM3D de HDF WALL. Tout tient dans un seul fichier HTML autonome : `index.html`.
+
+**Version 1.0.2** : son et confort audio, sans changement du jeu, des commandes ni du moteur.
+
+- Le son s'active à la manette : chaque bouton relance le contexte audio. Les navigateurs (Chrome, Safari, iPad) refusent cependant de démarrer le son tant qu'il n'y a eu ni clic, ni toucher, ni touche du clavier. Tant que le son est suspendu, une invite discrète l'indique (« Appuie sur ✕ / un bouton pour activer le son », puis « touche l'écran ou clique une fois » si la manette seule ne suffit pas). Elle disparaît dès que le son joue.
+- Le son reprend tout seul après un onglet en arrière-plan, une mise en veille ou une interruption iOS.
+- Les menus ont leurs sons à la manette : déplacement à la croix, validation avec ✕, retour avec ○.
+- Les sons ne se chevauchent plus :
+  - un même son déclenché deux fois de suite (manette et clic, ou plusieurs appels dans la même image) ne joue qu'une fois ;
+  - le nombre de voix est plafonné par catégorie (interface, pas, effets, musique) ;
+  - la musique d'exploration s'efface en fondu à l'entrée du mode horreur.
+- Affichage : sur les écrans bas (téléphone en paysage), seules les deux notifications les plus récentes restent visibles, pour ne plus recouvrir l'aide au centre de l'écran. L'invite du son se place dans le flux des menus et des notifications sans rien chevaucher.
+- Moins de coupures :
+  - la musique est programmée au fil de l'eau sur l'horloge audio, et non plus 170 notes d'un coup ;
+  - les nœuds audio terminés sont libérés et les boucles inutilisées arrêtées ;
+  - la musique d'horreur muette est débranchée ;
+  - les percussions de poursuite sont calées sur l'horloge audio.
 
 **Version 1.0.1** : corrections d'affichage de l'interface, sans changement du jeu, des commandes ni du moteur.
 
